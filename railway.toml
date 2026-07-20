@@ -1,0 +1,11 @@
+[build]
+builder = "dockerfile"
+
+[build.nixpacks]
+providers = ["nodejs", "php", "composer"]
+
+[[build.nixpacks.phases.setup]]
+run = ["npm install", "npm run build", "composer install"]
+
+[start]
+cmd = "vendor/bin/heroku-php-apache2 public/"
