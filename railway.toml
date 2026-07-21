@@ -1,5 +1,5 @@
 [build]
-builder = "dockerfile"
+builder = "nixpacks"
 
 [build.nixpacks]
 providers = ["nodejs", "php", "composer"]
