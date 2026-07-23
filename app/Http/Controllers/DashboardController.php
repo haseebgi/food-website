@@ -16,13 +16,13 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        // Pehle ensure karein ke user login ho
-        $middleware('auth');
+        // User ka logged-in hona lazmi hai
+        $this->middleware('auth');
     }
 
     public function index(Request $request)
     {
-        // Check karein ke agar user ka role_id 1 nahi hai, toh admin dashboard access na mile
+        // Check karein ke agar user ka role_id 1 nahi hai, toh home page par bhej dein
         if (auth()->check() && auth()->user()->role_id != 1) {
             return redirect()->route('home')->with('error', 'Aapko admin dashboard access karne ki ijazat nahi hai.');
         }
@@ -38,7 +38,6 @@ class DashboardController extends Controller
 
         // 3. Apply Filters
         if ($dateRange) {
-            // Split "YYYY-MM-DD - YYYY-MM-DD"
             $dates = explode(' - ', $dateRange);
             if (count($dates) == 2) {
                 $start = $dates[0] . ' 00:00:00';
