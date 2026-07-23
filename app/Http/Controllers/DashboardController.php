@@ -14,8 +14,19 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        // Pehle ensure karein ke user login ho
+        $middleware('auth');
+    }
+
     public function index(Request $request)
     {
+        // Check karein ke agar user ka role_id 1 nahi hai, toh admin dashboard access na mile
+        if (auth()->check() && auth()->user()->role_id != 1) {
+            return redirect()->route('home')->with('error', 'Aapko admin dashboard access karne ki ijazat nahi hai.');
+        }
+
         // 1. Filter Logic
         $filter = $request->input('filter', 'all');
         $dateRange = $request->input('date_range');
