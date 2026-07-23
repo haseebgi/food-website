@@ -7,7 +7,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
 
 <!-- 💡 SweetAlert2 CSS For Premium Toast Notifications -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -184,7 +184,7 @@
 </footer>
 
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('public/js/main.js') }}"></script>
 
 <!-- 💡 SweetAlert2 JS Library For Elegant Notifications -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

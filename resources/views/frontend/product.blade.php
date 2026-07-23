@@ -7,7 +7,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
 </head>
 <body data-cart-count="{{ session('cart') ? count(session('cart')) : 0 }}">
 
@@ -46,7 +46,7 @@
   <div class="wrap pd-grid">
     <div class="pd-media">
       @if($product->image)
-        <img src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+        <img src="{{ asset('public/storage/products/' . $product->image) }}" alt="{{ $product->name }}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
       @else
         <svg viewBox="0 0 120 120"><rect x="30" y="30" width="60" height="60" rx="10" fill="var(--paper)" stroke="var(--pine)" stroke-width="4"/><circle cx="60" cy="60" r="18" fill="var(--citrus)"/></svg>
       @endif
@@ -191,7 +191,7 @@
 </footer>
 
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('public/js/main.js') }}"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {

@@ -7,7 +7,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
 </head>
 <body data-cart-count="{{ count($cart) }}">
 
@@ -55,7 +55,7 @@
         <div class="thumb">
           {{-- 💡 Changed path from storage/ to storage/products/ so uploaded items map correctly --}}
           @if(!empty($details['image']))
-            <img src="{{ asset('storage/products/' . $details['image']) }}" alt="{{ $details['name'] }}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+            <img src="{{ asset('public/storage/products/' . $details['image']) }}" alt="{{ $details['name'] }}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
           @else
             {{-- Default placeholder svg fallback --}}
             <svg viewBox="0 0 120 120"><path d="M60 42c22 0 36 16 36 38s-16 36-36 36-36-14-36-36 14-38 36-38z" fill="var(--tomato)"/></svg>
@@ -122,7 +122,7 @@
 </footer>
 
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('public/js/main.js') }}"></script>
 
 {{-- Async AJAX Pipeline Handling Architecture Execution --}}
 <script>
