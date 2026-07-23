@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body data-cart-count="3">
+<body data-cart-count="0">
 
 <header class="site-header">
   <div class="strip"><div class="strip-track">
@@ -26,7 +26,7 @@
     </nav>
     <div class="nav-actions">
       <a href="{{ route('account') }}" class="icon-btn" aria-label="Account"><i data-lucide="user"></i></a>
-      <a href="{{ route('cart') }}" class="icon-btn" aria-label="Cart"><i data-lucide="shopping-basket"></i><span class="cart-count">3</span></a>
+      <a href="{{ route('cart') }}" class="icon-btn" aria-label="Cart"><i data-lucide="shopping-basket"></i><span class="cart-count"></span></a>
       <button class="nav-toggle icon-btn" aria-label="Menu" aria-expanded="false"><i data-lucide="menu"></i></button>
     </div>
   </div>

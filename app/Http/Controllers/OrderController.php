@@ -85,4 +85,22 @@ class OrderController extends Controller
         $riderUrl = $this->locationService->getRiderTrackingUrl($order);
         return view('orders.rider_qr', compact('order', 'riderUrl'));
     }
+
+
+ public function cancel($id)
+{
+    // user_id ki shart hata kar sirf id se order find karein
+    $order = Order::findOrFail($id);
+
+    // Check karein ke order pending ya confirmed ho tabhi cancel ho sake
+    if (in_array(strtolower($order->status), ['pending', 'confirmed'])) {
+        $order->status = 'Cancelled';
+        $order->save();
+        
+        return redirect()->back()->with('success', 'Order has been cancelled successfully.');
+    }
+
+    return redirect()->back()->with('error', 'This order cannot be cancelled.');
+}
+
 }

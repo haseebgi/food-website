@@ -19,6 +19,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CustomerDashboardController;
 
+Route::patch('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
+
 
 
 Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');

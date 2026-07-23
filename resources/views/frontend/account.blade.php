@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,16 +16,19 @@
     .history-card { background: white; padding: 32px; border-radius: 8px; border: 1px solid #eaeaea; }
     .user-badge { width: 50px; height: 50px; background: #e8f5e9; color: var(--pine); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
     .history-table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 20px; }
-    .history-table th { padding: 16px; background: var(--bg-soft); color: var(--ink); font-weight: 600; border-bottom: 2px solid #eee; }
-    .history-table td { padding: 16px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+    .history-table th { padding: 16px 12px; background: var(--bg-soft); color: var(--ink); font-weight: 600; border-bottom: 2px solid #eee; font-size: 0.9rem; }
+    .history-table td { padding: 16px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
     .status-pill { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
     .status-pending { background: #fff3cd; color: #856404; }
     .status-confirmed { background: #e2f0fd; color: #1d4ed8; }
     .status-completed { background: #d4edda; color: #155724; }
     .status-delivered { background: #d1ecf1; color: #0c5460; }
     .status-out-for-delivery { background: #ffdfd3; color: #c2410c; }
-    .btn-track { padding: 6px 14px; background: var(--pine); color: white; text-decoration: none; border-radius: 4px; font-size: 0.85rem; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; transition: 0.2s; }
+    .status-cancelled { background: #f8d7da; color: #721c24; }
+    .btn-track { padding: 6px 12px; background: var(--pine); color: white; text-decoration: none; border-radius: 4px; font-size: 0.8rem; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; transition: 0.2s; white-space: nowrap; }
     .btn-track:hover { opacity: 0.9; }
+    .btn-cancel { padding: 6px 12px; background: #c92a2a; color: white; text-decoration: none; border-radius: 4px; font-size: 0.8rem; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; transition: 0.2s; border: none; cursor: pointer; white-space: nowrap; }
+    .btn-cancel:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -77,6 +81,8 @@
                             <th>Date</th>
                             <th>Total</th>
                             <th>Status</th>
+                            <th>Cancel</th>
+                           
                             <th style="text-align:right;">Action</th>
                         </tr>
                     </thead>
@@ -91,9 +97,22 @@
                                     {{ $order->status }}
                                 </span>
                             </td>
+                            <td>
+                                @if(in_array(strtolower($order->status), ['pending', 'confirmed']))
+                                    <form action="{{ route('order.cancel', $order->id) }}" method="POST" style="display:inline; margin:0;" onsubmit="return confirm('Are you sure you want to cancel this order?');">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="btn-cancel">
+                                            <i data-lucide="x-circle" style="width:13px; height:13px;"></i> Cancel
+                                        </button>
+                                    </form>
+                                @else
+                                    <span style="color: var(--ink-soft); font-size: 0.85rem;">N/A</span>
+                                @endif
+                            </td>
                             <td style="text-align:right;">
                                 <a href="{{ route('order.track', $order->order_number) }}" class="btn-track">
-                                    <i data-lucide="compass" style="width:14px; height:14px;"></i> Track Order
+                                    <i data-lucide="compass" style="width:13px; height:13px;"></i> Track
                                 </a>
                             </td>
                         </tr>
