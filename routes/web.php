@@ -58,16 +58,8 @@ Route::post('/remove-from-cart', [StorefrontController::class, 'removeFromCart']
 
 
 Route::middleware(['auth'])->group(function () {
-
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])
-        ->name('admin.dashboard')
-        ->middleware(function ($request, $next) {
-            if (auth()->user()->role_id != 1) {
-                return redirect('/')->with('error', 'Aapko ijazat nahi hai.');
-            }
-            return $next($request);
-        });
-
+        ->name('admin.dashboard');
 });
 
 // Expenses Module Routes
