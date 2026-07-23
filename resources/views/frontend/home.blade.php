@@ -7,7 +7,7 @@
 <meta name="description" content="FreshCrate is a farm-direct grocery storefront — fresh produce, dairy and pantry staples, stamped fresh and dispatched same-day.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
 </head>
 <body data-cart-count="0">
 
@@ -109,7 +109,7 @@
             @endif
 
             @if($product->image)
-              <img src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}" style="width:100%; height:100%; object-fit:cover;">
+              <img src="{{ asset('publicstorage/products/' . $product->image) }}" alt="{{ $product->name }}" style="width:100%; height:100%; object-fit:cover;">
             @else
               <svg viewBox="0 0 120 120"><rect x="30" y="30" width="60" height="60" rx="10" fill="var(--paper)" stroke="var(--pine)" stroke-width="4"/><circle cx="60" cy="60" r="18" fill="var(--citrus)"/></svg>
             @endif
@@ -239,6 +239,6 @@
 </footer>
 
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('publicjs/main.js') }}"></script>
 </body>
 </html>
