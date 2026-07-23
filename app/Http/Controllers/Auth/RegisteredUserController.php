@@ -46,6 +46,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Naye user ko register/login hone ke baad seedha home page par bhejne ke liye
+        return redirect('/');
     }
 }
