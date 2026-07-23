@@ -77,7 +77,7 @@
             @endif
 
             @if($product->image)
-              <img src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}" style="width:100%; height:100%; object-fit:cover;">
+              <img src="{{ asset('public/storage/products/' . $product->image) }}" alt="{{ $product->name }}" style="width:100%; height:100%; object-fit:cover;">
             @else
               <svg viewBox="0 0 120 120"><rect x="30" y="30" width="60" height="60" rx="10" fill="var(--paper)" stroke="var(--pine)" stroke-width="4"/><circle cx="60" cy="60" r="18" fill="var(--citrus)"/></svg>
             @endif
