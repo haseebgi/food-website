@@ -22,21 +22,21 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
-        $request->session()->regenerate();
+            public function store(LoginRequest $request): RedirectResponse
+        {
+            $request->authenticate();
+            $request->session()->regenerate();
 
-        $user = auth()->user();
+            $user = auth()->user();
 
-        // Agar role_id 1 hai (yani Manager/Admin) toh dashboard par bhejo
-        if ($user->role_id == 1) {
-            return redirect()->intended(route('dashboard', absolute: false));
+            // Agar role_id 1 hai, toh dashboard par bhejo
+            if ($user->role_id == 1) {
+                return redirect()->intended(route('admin.dashboard')); // Yahan apna exact dashboard route name dein
+            }
+
+            // Baqi sabhi users ko home page par bhejo aur session se intended URL clear kar do taake wo dashboard na ja sakein
+            return redirect()->to('/');
         }
-
-        // Baki aam users (jinka role_id NULL ya 0 hai) home page par jayein
-        return redirect()->intended('/');
-    }
 
     /**
      * Destroy an authenticated session.
