@@ -43,12 +43,12 @@ class StoreCheckoutRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.regex'         => 'Name mein sirf alphabets (letters) allow hain, numbers ya special characters nahi.',
-            'phone.regex'        => 'Phone number mein sirf digits (0-9) allow hain, alphabets ya special characters nahi.',
-            'address.regex'      => 'Address mein sirf letters, numbers, comma, dot, aur hyphen allow hain.',
-            'city.regex'         => 'City ke naam mein sirf alphabets allow hain, numbers nahi.',
-            'postal_code.regex'  => 'Postal code sirf digits (0-9) par mushtamil hona chahiye.',
-            'payment_method.in'  => 'Please ek valid payment method select karein.',
+            'name.regex'         => 'Name can only contain letters and spaces.',
+            'phone.regex'        => 'Phone number can only contain digits (0-9).',
+            'address.regex'      => 'Address can only contain letters, numbers, commas, periods, and hyphens.',
+            'city.regex'         => 'City name can only contain letters.',
+            'postal_code.regex'  => 'Postal code must contain digits only.',
+            'payment_method.in'  => 'Please select a valid payment method.',
         ];
     }
 }
