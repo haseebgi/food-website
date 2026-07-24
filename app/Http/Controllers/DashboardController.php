@@ -14,12 +14,6 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function __construct()
-    {
-        // User ka logged-in hona lazmi hai
-        $this->middleware('auth');
-    }
-
     public function index(Request $request)
     {
         // Check karein ke agar user ka role_id 1 nahi hai, toh home page par bhej dein
