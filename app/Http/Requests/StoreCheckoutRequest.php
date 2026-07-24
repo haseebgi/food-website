@@ -20,8 +20,8 @@ class StoreCheckoutRequest extends FormRequest
             // Standard email format check
             'email' => ['nullable', 'email', 'max:255'],
 
-            // Sirf digits, 10 se 15 numbers ke beech (Pakistani mobile format jese 03XXXXXXXXX)
-            'phone' => ['required', 'string', 'regex:/^[0-9]{10,15}$/'],
+            // Sirf digits allow — koi fixed length restriction nahi
+            'phone' => ['required', 'string', 'regex:/^[0-9]+$/'],
 
             // Address mein letters, numbers, spaces, comma, dot, hyphen allow — kyunke house/street number hota hai
             'address' => ['required', 'string', 'max:500', 'regex:/^[\pL0-9\s\,\.\-\/]+$/u'],
