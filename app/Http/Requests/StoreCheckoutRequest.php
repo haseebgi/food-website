@@ -14,14 +14,41 @@ class StoreCheckoutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'           => 'required|string|max:255',
-            'email'          => 'nullable|email',
-            'phone'          => 'required|string',
-            'address'        => 'required|string',
-            'city'           => 'required|string',
-            'payment_method' => 'required|string',
-            'notes'          => 'nullable|string',
-            'postal_code'    => 'nullable|string',
+            // Sirf letters, spaces, dot, hyphen — numbers ya special characters allow nahi
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\pL\s\.\-]+$/u'],
+
+            // Standard email format check
+            'email' => ['nullable', 'email', 'max:255'],
+
+            // Sirf digits, 10 se 15 numbers ke beech (Pakistani mobile format jese 03XXXXXXXXX)
+            'phone' => ['required', 'string', 'regex:/^[0-9]{10,15}$/'],
+
+            // Address mein letters, numbers, spaces, comma, dot, hyphen allow — kyunke house/street number hota hai
+            'address' => ['required', 'string', 'max:500', 'regex:/^[\pL0-9\s\,\.\-\/]+$/u'],
+
+            // City ka naam sirf letters mein hota hai
+            'city' => ['required', 'string', 'max:100', 'regex:/^[\pL\s\.\-]+$/u'],
+
+            // Sirf defined payment methods allow
+            'payment_method' => ['required', 'string', 'in:cod,jazzcash,easypaisa'],
+
+            // Notes free text hai, koi restriction nahi
+            'notes' => ['nullable', 'string', 'max:1000'],
+
+            // Postal code sirf digits mein hota hai
+            'postal_code' => ['nullable', 'string', 'regex:/^[0-9]{4,10}$/'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.regex'         => 'Name mein sirf alphabets (letters) allow hain, numbers ya special characters nahi.',
+            'phone.regex'        => 'Phone number mein sirf digits (0-9) allow hain, alphabets ya special characters nahi.',
+            'address.regex'      => 'Address mein sirf letters, numbers, comma, dot, aur hyphen allow hain.',
+            'city.regex'         => 'City ke naam mein sirf alphabets allow hain, numbers nahi.',
+            'postal_code.regex'  => 'Postal code sirf digits (0-9) par mushtamil hona chahiye.',
+            'payment_method.in'  => 'Please ek valid payment method select karein.',
         ];
     }
 }
