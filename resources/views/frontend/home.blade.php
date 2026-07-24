@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
 </head>
 
-<body data-cart-count="0">
+<body data-cart-count="{{ session('cart') ? count(session('cart')) : 0 }}">
 
 <header class="site-header">
   <div class="strip"><div class="strip-track">
