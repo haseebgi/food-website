@@ -19,13 +19,15 @@ class CheckoutController extends Controller
 
         // 1. Validation
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\pL\s\.\-]+$/u'],
             'phone' => 'required|string|max:20',
             'email' => 'nullable|email|max:255',
             'address' => 'required|string',
             'city' => 'required|string',
             'postal_code' => 'nullable|string|max:20',
             'payment_method' => 'required|string'
+        ], [
+            'name.regex' => 'Name mein sirf alphabets (letters) allow hain, numbers ya special characters nahi.',
         ]);
 
         // 2. Totals Calculation
