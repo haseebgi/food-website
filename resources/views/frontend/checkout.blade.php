@@ -84,7 +84,65 @@
         </div>
     @endif
 
-   
+    <!-- Contact Card -->
+    <div class="card" style="padding:32px; margin-bottom:24px;">
+      <h3 style="margin-bottom:20px;">Contact</h3>
+      <div class="field-row">
+        <div class="field">
+          <label>Full name</label>
+          <input type="text" name="name" value="{{ old('name') }}" placeholder="Ayesha Raza" required>
+          @error('name')
+            <span style="color:#c0392b; font-size:0.82rem;">{{ $message }}</span>
+          @enderror
+        </div>
+        <div class="field">
+          <label>Phone number</label>
+          <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="03XX-XXXXXXX" required>
+          @error('phone')
+            <span style="color:#c0392b; font-size:0.82rem;">{{ $message }}</span>
+          @enderror
+        </div>
+      </div>
+      <div class="field">
+        <label>Email (Optional)</label>
+        <input type="email" name="email" value="{{ old('email') }}" placeholder="you@example.com">
+        @error('email')
+          <span style="color:#c0392b; font-size:0.82rem;">{{ $message }}</span>
+        @enderror
+      </div>
+    </div>
+
+    <!-- Delivery Address Card -->
+    <div class="card" style="padding:32px; margin-bottom:24px;">
+      <h3 style="margin-bottom:20px;">Delivery address</h3>
+      <div class="field">
+        <label>Street address</label>
+        <input type="text" name="address" value="{{ old('address') }}" placeholder="House 12, Street 4, Model Town" required>
+        @error('address')
+          <span style="color:#c0392b; font-size:0.82rem;">{{ $message }}</span>
+        @enderror
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>City</label>
+          <input type="text" name="city" value="{{ old('city', 'Sargodha') }}" placeholder="Sargodha" required>
+          @error('city')
+            <span style="color:#c0392b; font-size:0.82rem;">{{ $message }}</span>
+          @enderror
+        </div>
+        <div class="field">
+          <label>Postal code</label>
+          <input type="text" name="postal_code" value="{{ old('postal_code') }}" placeholder="40100">
+          @error('postal_code')
+            <span style="color:#c0392b; font-size:0.82rem;">{{ $message }}</span>
+          @enderror
+        </div>
+      </div>
+      <div class="field">
+        <label>Delivery notes (optional)</label>
+        <textarea name="notes" rows="3" placeholder="Gate code, landmark, preferred time...">{{ old('notes') }}</textarea>
+      </div>
+    </div>
 
     <!-- Payment Options Radio Inputs (Cleaned & Native) -->
     <div class="card" style="padding:32px;">
